@@ -1,12 +1,23 @@
 class HashTable:
     def __init__(self, size):
         self.size = size
-        self.table = [] * size
+        self.table = [None] * size
 
-    def HashInsert(self, table, item):
-        index = int(item[0])
-        table[index] = item
+    # Inserts package into correct bucket based on package id (key)
+    def HashInsert(self, package):
+        key = package.id
+        index = int(key) % self.size # Always 40 in this case
+        if self.table[index] is None: # If the index is empty, create a list
+            self.table[index] = []
+        self.table[index].append(package) # Add to bucket
         
-    def HashSearch(self, table, key):
-        index = int(key)
-        return table[index]
+    # Search for package by id (key)
+    def HashSearch(self, key):
+        index = int(key) % self.size
+        if self.table[index] is not None:
+            for package in self.table[index]:
+                if package.id == key:
+                    return package
+        return None
+    
+    

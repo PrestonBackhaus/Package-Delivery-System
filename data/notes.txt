@@ -1,0 +1,19 @@
+Need:
+- Hash Table: Insert, Search
+- Algorithm for delivery: Nearest Neighbor Algorithm
+- Trucks that handle max 16 packages each, 
+- Packages containing all their relevant data
+
+Package:
+- Stores package info
+
+Packagedata:
+- Takes data from package excel file and creates packages
+
+Truck:
+- Stores truck info
+
+HashTable:
+- Stores and retreives packages
+
+#9 has special instructions
