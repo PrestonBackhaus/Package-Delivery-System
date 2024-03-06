@@ -1,0 +1,10 @@
+from packagedata import create_packages
+from hashtable import HashTable
+
+# Create packages, add to hashtable
+packages = create_packages()
+hashtable = HashTable(40)
+for package in packages:
+    hashtable.HashInsert(package)
+
+
