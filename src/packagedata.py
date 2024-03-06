@@ -1,17 +1,22 @@
-import pandas
+import csv
 from package import Package
 
+
 def create_packages():
-    # Dataframe that reads excel file, data starts on row 8 and columns A to G
-    df = pandas.read_excel('data/WGUPS Package File.xlsx', header=None, skiprows=8, usecols='A:G')
-
-    # Create packages from dataframe and add to list (for testing), hash table
     packages = []
-    for i, row in df.iterrows(): # Each row is a tuple
-        id, address, city, state, zip, deadline, weight = row
-        package = Package(*row)
-        packages.append(package)
 
-# Test to make sure pacakages are created and added correctly
-'''for package in packages:
-    print(package.get_all_info())'''
+    # Open csv and read data into package objects
+    with open('../data/packageCSV.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            # Create package and add to list of packages
+            package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+            packages.append(package)
+
+    return packages
+
+
+# Test to make sure packages are created and added correctly
+packages = create_packages()
+for package in packages:
+    print(package.get_all_info())

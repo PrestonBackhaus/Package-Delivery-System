@@ -6,10 +6,10 @@ class HashTable:
     # Inserts package into correct bucket based on package id (key)
     def HashInsert(self, package):
         key = package.id
-        index = int(key) % self.size # Always 40 in this case
-        if self.table[index] is None: # If the index is empty, create a list
+        index = int(key) % self.size  # Always 40 in this case
+        if self.table[index] is None:  # If the index is empty, create a list
             self.table[index] = []
-        self.table[index].append(package) # Add to bucket
+        self.table[index].append(package)  # Add to bucket
         
     # Search for package by id (key)
     def HashSearch(self, key):
