@@ -1,3 +1,5 @@
+# ID: 011890402, Name: Preston Backhaus
+
 from packagedata import create_packages
 from hashtable import HashTable
 
@@ -5,6 +7,6 @@ from hashtable import HashTable
 packages = create_packages()
 hashtable = HashTable(40)
 for package in packages:
-    hashtable.HashInsert(package)
+    hashtable.hash_insert(package)
 
 
