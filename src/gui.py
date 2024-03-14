@@ -21,18 +21,44 @@ class GUI(tk.Frame):
         self.title.pack(side="top", pady=10)
 
         # Truck 1 labels
-        self.truck1_label = tk.Label(self, text="Truck 1")
-        self.truck1_label.pack(anchor='w', padx=5, pady=3)
-        self.truck1_current_location = tk.Label(self, text="Current Location: ")
-        self.truck1_current_location.pack(anchor='w', padx=5, pady=3)
-        self.truck1_next_location = tk.Label(self, text="Next Location: ")
-        self.truck1_next_location.pack(anchor='w', padx=5, pady=3)
-        self.truck1_distance = tk.Label(self, text="Distance: ")
-        self.truck1_distance.pack(anchor='w', padx=5, pady=3)
+        self.truck1_frame = tk.Frame(self)
+        self.truck1_frame.pack(fill=tk.X, padx=5, pady=10)
+        self.truck1_label = tk.Label(self.truck1_frame, text="Truck 1")
+        self.truck1_label.grid(row=0, column=0)
+        self.truck1_current_location = tk.Label(self.truck1_frame, text="Current Location: ")
+        self.truck1_current_location.grid(row=1, column=0, sticky=tk.E)
+        self.truck1_next_location = tk.Label(self.truck1_frame, text="Next Location: ")
+        self.truck1_next_location.grid(row=2, column=0, sticky=tk.E)
+        self.truck1_distance = tk.Label(self.truck1_frame, text="Distance: ")
+        self.truck1_distance.grid(row=3, column=0, sticky=tk.E)
+
+        # Truck 2 labels
+        self.truck2_frame = tk.Frame(self)
+        self.truck2_frame.pack(fill=tk.X, padx=5, pady=10)
+        self.truck2_label = tk.Label(self.truck2_frame, text="Truck 2")
+        self.truck2_label.grid(row=0, column=0)
+        self.truck2_current_location = tk.Label(self.truck2_frame, text="Current Location: ")
+        self.truck2_current_location.grid(row=1, column=0, sticky=tk.E)
+        self.truck2_next_location = tk.Label(self.truck2_frame, text="Next Location: ")
+        self.truck2_next_location.grid(row=2, column=0, sticky=tk.E)
+        self.truck2_distance = tk.Label(self.truck2_frame, text="Distance: ")
+        self.truck2_distance.grid(row=3, column=0, sticky=tk.E)
+
+        # Truck 3 labels
+        self.truck3_frame = tk.Frame(self)
+        self.truck3_frame.pack(fill=tk.X, padx=5, pady=10)
+        self.truck3_label = tk.Label(self.truck3_frame, text="Truck 3")
+        self.truck3_label.grid(row=0, column=0)
+        self.truck3_current_location = tk.Label(self.truck3_frame, text="Current Location: ")
+        self.truck3_current_location.grid(row=1, column=0, sticky=tk.E)
+        self.truck3_next_location = tk.Label(self.truck3_frame, text="Next Location: ")
+        self.truck3_next_location.grid(row=2, column=0, sticky=tk.E)
+        self.truck3_distance = tk.Label(self.truck3_frame, text="Distance: ")
+        self.truck3_distance.grid(row=3, column=0, sticky=tk.E)
 
     def update_truck1(self, current_location, next_location, distance):
         self.truck1_current_location.config(text=f"Current Location: {current_location}")
-        self.truck1_next_lcoation.config(text=f"Next Location: {next_location}")
+        self.truck1_next_location.config(text=f"Next Location: {next_location}")
         self.truck1_distance.config(text=f"Distance: {distance}")
 
 # Test GUI

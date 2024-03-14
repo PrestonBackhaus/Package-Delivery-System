@@ -1,8 +1,10 @@
 Need:
-- Hash Table: Insert, Search
+- Hash Table: Insert, Search        -- DONE
 - Algorithm for delivery: Nearest Neighbor Algorithm
 - Trucks that handle max 16 packages each, 
 - Packages containing all their relevant data
+- Way to handle special instructions for packages
+- Algorithm for loading trucks
 
 Package:
 - Stores package info
@@ -12,8 +14,11 @@ Packagedata:
 
 Truck:
 - Stores truck info
+- Delivers packages
 
 HashTable:
-- Stores and retreives packages
+- Stores and retrieves packages
+- Will hold time delivered, status
 
-#9 has special instructions
+Many packages have special instructions.
+Instructions:
