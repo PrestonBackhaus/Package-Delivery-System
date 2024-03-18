@@ -17,3 +17,23 @@ class Package:
     # Returns all package info
     def get_all_info(self):
         return f'ID: {self.id}, Address: {self.address}, City: {self.city}, State: {self.state}, Zip: {self.zip}, Deadline: {self.deadline}, Weight: {self.weight}'
+
+    # Set delivery status and time delivered
+    def set_delivered(self, time):
+        self.delivered = True
+        self.delivery_time = time
+
+    # Get delivery status and time delivered
+    def get_delivered(self):
+        if self.delivered:
+            return f'Delivered at {self.delivery_time}.'
+        else:
+            return 'Not delivered.'
+
+    # Get deadline
+    def get_deadline(self):
+        return self.deadline
+
+    # Get ID
+    def get_id(self):
+        return self.id

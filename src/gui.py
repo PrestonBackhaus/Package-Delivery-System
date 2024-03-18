@@ -29,7 +29,7 @@ class GUI(tk.Frame):
         self.truck1_current_location.grid(row=1, column=0, sticky=tk.E)
         self.truck1_next_location = tk.Label(self.truck1_frame, text="Next Location: ")
         self.truck1_next_location.grid(row=2, column=0, sticky=tk.E)
-        self.truck1_distance = tk.Label(self.truck1_frame, text="Distance: ")
+        self.truck1_distance = tk.Label(self.truck1_frame, text="Total Distance: ")
         self.truck1_distance.grid(row=3, column=0, sticky=tk.E)
 
         # Truck 2 labels
@@ -41,7 +41,7 @@ class GUI(tk.Frame):
         self.truck2_current_location.grid(row=1, column=0, sticky=tk.E)
         self.truck2_next_location = tk.Label(self.truck2_frame, text="Next Location: ")
         self.truck2_next_location.grid(row=2, column=0, sticky=tk.E)
-        self.truck2_distance = tk.Label(self.truck2_frame, text="Distance: ")
+        self.truck2_distance = tk.Label(self.truck2_frame, text="Total Distance: ")
         self.truck2_distance.grid(row=3, column=0, sticky=tk.E)
 
         # Truck 3 labels
@@ -53,13 +53,23 @@ class GUI(tk.Frame):
         self.truck3_current_location.grid(row=1, column=0, sticky=tk.E)
         self.truck3_next_location = tk.Label(self.truck3_frame, text="Next Location: ")
         self.truck3_next_location.grid(row=2, column=0, sticky=tk.E)
-        self.truck3_distance = tk.Label(self.truck3_frame, text="Distance: ")
+        self.truck3_distance = tk.Label(self.truck3_frame, text="Total Distance: ")
         self.truck3_distance.grid(row=3, column=0, sticky=tk.E)
 
     def update_truck1(self, current_location, next_location, distance):
         self.truck1_current_location.config(text=f"Current Location: {current_location}")
         self.truck1_next_location.config(text=f"Next Location: {next_location}")
-        self.truck1_distance.config(text=f"Distance: {distance}")
+        self.truck1_distance.config(text=f"Total Distance: {distance}")
+
+    def update_truck2(self, current_location, next_location, distance):
+        self.truck2_current_location.config(text=f"Current Location: {current_location}")
+        self.truck2_next_location.config(text=f"Next Location: {next_location}")
+        self.truck2_distance.config(text=f"Total Distance: {distance}")
+
+    def update_truck3(self, current_location, next_location, distance):
+        self.truck3_current_location.config(text=f"Current Location: {current_location}")
+        self.truck3_next_location.config(text=f"Next Location: {next_location}")
+        self.truck3_distance.config(text=f"Total Distance: {distance}")
 
 # Test GUI
 root = tk.Tk()
