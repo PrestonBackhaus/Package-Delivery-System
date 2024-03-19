@@ -10,13 +10,13 @@ def create_packages():
         reader = csv.reader(file)
         for row in reader:
             # Create package and add to list of packages
-            package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+            package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], status='Undelivered')
             packages.append(package)
 
     return packages
 
 
 # Test to make sure packages are created and added correctly
-packages = create_packages()
-for package in packages:
-    print(package.get_all_info())
+#packages = create_packages()
+#for package in packages:
+#    print(package.get_all_info())

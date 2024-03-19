@@ -16,7 +16,7 @@ class HashTable:
         index = int(key) % self.size
         if self.table[index] is not None:
             for package in self.table[index]:
-                if package.id == key:
+                if package.id == str(key):
                     return package
         return None
     

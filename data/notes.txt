@@ -25,6 +25,20 @@ Instructions:
 
 
 
+Special Instructions:
+ID 3: Can only be on truck 2
+ID 6: Delayed on flight -- will not arrive to depot until 9:05 am
+ID 9: Wrong address until 10:20 am, so can not be loaded until then
+ID 14: Must be delivered with 15, 19
+ID 16: Must be delivered with 13, 19
+ID 18: Can only be on truck 2
+ID 20: Must be delivered with 15, 13
+ID 25: Delayed, won't be at depot until 9:05 am
+ID 28: Delayed, won't be at depot until 9:05 am
+ID 32: Delayed, won't be at depot until 9:05 am
+ID 36: Can only be on truck 2
+ID 38: Can only be on truck 2
+
 
 
 

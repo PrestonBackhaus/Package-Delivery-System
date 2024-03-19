@@ -23,7 +23,7 @@ def create_distances():
             clean_row = []
             # Change empty strings or 0.0 (distance to itself) to None
             for val in row:
-                if val == '' or val == '0.0':
+                if val == '':
                     clean_row.append(None)
                 else:
                     clean_row.append(float(val))  # Change strings to floats
@@ -31,6 +31,3 @@ def create_distances():
 
     return distances
 
-
-print(create_addresses())
-print(create_distances())
