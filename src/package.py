@@ -10,6 +10,7 @@ class Package:
         self.weight = weight
         self.status = status
         self.delivery_time = None
+        self.load_time = None
 
     def get_address(self):
         return self.address
@@ -23,16 +24,24 @@ class Package:
         self.status = 'Delivered'
         self.delivery_time = time
 
+    # Set delivery status to 'At the hub'
+    def set_at_hub(self):
+        self.status = 'At the hub'
+
+    # Set delivery status to 'En route'
+    def set_en_route(self):
+        self.status = 'En route'
+
     # Get delivery status and time delivered
     def get_status(self):
         if self.status == 'Delivered':
             return f'Delivered at {self.delivery_time}.'
         elif self.status == 'At the hub':
-            return f'At the hub. Current time: {self.delivery_time}.'
+            return f'Package is at the hub.'
         elif self.status == 'En route':
-            return f'En route. Current time: {self.delivery_time}.'
+            return f'Package is en route.'
         else:
-            return f'Not delivered. Current time: {self.delivery_time}.'
+            return f'Package is not delivered.'
 
     # Get deadline
     def get_deadline(self):
@@ -49,3 +58,11 @@ class Package:
     # Get delivery time
     def get_delivery_time(self):
         return self.delivery_time
+
+    # Set load time
+    def set_load_time(self, time):
+        self.load_time = time
+
+    # Get load time
+    def get_load_time(self):
+        return self.load_time
