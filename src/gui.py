@@ -84,20 +84,21 @@ class GUI(tk.Frame):
 
     # Display all statuses and mileage, attached to first button
     def display_all_status_mileage(self):
-        # Clear
+        # Clear the text box in case it was previously filled
         self.all_results_text.delete(1.0, tk.END)
         # Get statuses (late_statuses is unused because delivery has finished)
+        # 3:00 PM is a placeholder later than any delivery time
         truck1_statuses, truck2_statuses, truck3_statuses, late_statuses = self.hashtable.get_all_status('3:00 PM')
         # Convert status list to a string for display on label
         truck1_statuses_string = '\n'.join(truck1_statuses)
         truck2_statuses_string = '\n'.join(truck2_statuses)
         truck3_statuses_string = '\n'.join(truck3_statuses)
-        # Get truck mileage
+        # Get truck mileage for each truck
         truck1_miles = self.truck1.total_miles
         truck2_miles = self.truck2.total_miles
         truck3_miles = self.truck3.total_miles
-        total_miles = truck1_miles + truck2_miles + truck3_miles
-        # Display statuses and mileage
+        total_miles = truck1_miles + truck2_miles + truck3_miles  # Total mileage of the whole delivery system
+        # Display package statuses and mileage for each truck
         self.all_results_text.insert(tk.END, f"Truck 1 statuses:\n{truck1_statuses_string}\n"
                                              f"Truck 2 statuses:\n{truck2_statuses_string}\n"
                                              f"Truck 3 statuses:\n{truck3_statuses_string}\n"
