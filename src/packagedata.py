@@ -15,10 +15,3 @@ def create_packages():
 
     return packages
 
-
-# Test to make sure packages are created and added correctly
-'''
-packages = create_packages()
-for package in packages:
-    print(package.get_all_info())
-'''

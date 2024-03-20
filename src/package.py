@@ -11,15 +11,17 @@ class Package:
         self.status = status
         self.delivery_time = None
         self.load_time = None
+        self.truck = None
 
     def get_address(self):
         return self.address
     
     # Returns all package info
     def get_all_info(self):
-        return f'ID: {self.id}, Address: {self.address}, City: {self.city}, State: {self.state}, Zip: {self.zip}, Deadline: {self.deadline}, Weight: {self.weight}, Status: {self.status}'
+        return (f'ID: {self.id}, Address: {self.address}, City: {self.city}, State: {self.state}, '
+                f'Zip: {self.zip}, Deadline: {self.deadline}, Weight: {self.weight}, Status: {self.status}')
 
-    # Set delivery status and time delivered
+    # Set delivery status to 'Delivered' and set time delivered
     def set_delivered(self, time):
         self.status = 'Delivered'
         self.delivery_time = time
@@ -66,3 +68,7 @@ class Package:
     # Get load time
     def get_load_time(self):
         return self.load_time
+
+    # Get the truck the package is on
+    def get_truck(self):
+        return self.truck

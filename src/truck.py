@@ -1,5 +1,4 @@
 import distancedata
-from hashtable import HashTable
 from package import Package
 
 
@@ -7,10 +6,8 @@ class Truck:
     # Distance and address data
     addresses = distancedata.create_addresses()
     distances = distancedata.create_distances()
-    # print(addresses)
-    # print(distances)
 
-    # Initialize truck with an id (1-3), empty package list, and starting location
+    # Initialize truck with id
     def __init__(self, id):
         self.id = id
         self.packages = []
@@ -25,6 +22,7 @@ class Truck:
     def load_package(self, package):
         if not self.full:  # Add as long as the truck is not full
             self.packages.append(package)
+            package.truck = self.id  # Set package truck to current truck
             package.set_en_route()  # Set package status to en route
             package.set_load_time(self.current_time)  # Set package load time to current time
             if len(self.packages) == 16:  # If the truck has 16 packages, it is full
@@ -49,22 +47,19 @@ class Truck:
     # Nearest Neighbor Greedy algorithm for finding the shortest distance
     def nearest_neighbor(self):
         # Temp package to hold the current location for comparison with the next package
-        temp_package = Package("0", self.current_location, "", "", "", "", "", "N/A")
+        temp_package = Package("0", self.current_location, "", "", "", "", "", "")
         while len(self.packages) > 0:  # While there are still packages
             next_package = None
-            shortest = 1000
+            shortest = 1000  # Set shortest distance to a number higher than any distance could be
             for package in self.packages:  # Iterate through every package
                 distance = self.distance_between(temp_package, package)  # Get the distance between packages
-                if distance is None:
-                    print(distance)
-                    print(temp_package.get_address(), package.get_address())
                 if distance < shortest:  # Set the shortest distance and next package
                     shortest = distance
                     next_package = package
-            self.current_location = next_package.get_address()
+            self.current_location = next_package.get_address()  # Set the current location
             temp_package = next_package  # Set the temp package to the next package
             time_to_deliver = shortest / 18  # Time to deliver package in hours
-            self.current_time = self.update_time(time_to_deliver)  # Update time
+            self.current_time = self.update_time(time_to_deliver)  # Updates the time and converts it back to string
             self.deliver_package(next_package)  # Deliver package, deleting it from the truck
             self.total_miles = round(self.total_miles + shortest, 1)  # Add distance to total miles, round to 1 decimal
             print(f"Package with ID {next_package.get_id()} delivered to {next_package.get_address()}.")
@@ -72,8 +67,7 @@ class Truck:
             print(f"Total miles driven so far: {self.total_miles}.")
             print(f"Current time: {self.current_time}.")
             print(f"Current location: {self.current_location}.\n")
-            self.started_flag = True
-        return self.total_miles
+            self.started_flag = True  # Set flag to true after the first run
 
     # Find distance between two addresses
     def distance_between(self, package1, package2):
@@ -81,9 +75,10 @@ class Truck:
         address2 = package2.get_address()
         index1 = self.addresses.index(address1)  # Get index of address in list
         index2 = self.addresses.index(address2)
+        # Adjust indexes for the distances list
         if index1 == index2:  # If the addresses are the same, it travels no distance
             return 0.0
-        if index2 == 1:  # Special case for when the address is one index after the hub
+        if index2 == 1:  # Special case for when the address is one after the hub
             index2 += 1
         if not self.started_flag: # For the first run, the horizontal index starts at 0
             if index1 < index2:  # Always start with the smaller index
@@ -117,7 +112,8 @@ class Truck:
             current_hours += 1
         # If hours over 12, change AM to PM
         if current_hours >= 12:
-            current_hours -= 12
+            if current_hours > 12:
+                current_hours -= 12
             am_pm = "PM"
         else:
             am_pm = "AM"
@@ -128,8 +124,8 @@ class Truck:
     # Test to make sure the nearest neighbor algorithm works
     def test_nearest_neighbor(self):
         # Run nearest neighbor algorithm which ends up returning the total miles
-        total_miles = round(self.nearest_neighbor(), 1)
-        print(f"Total miles overall: {total_miles}. Current time: {self.current_time}.")
+        self.nearest_neighbor()
+        print(f"Total miles overall: {self.total_miles}. Current time: {self.current_time}.")
         # Print the packages in order of delivery
         for package in self.delivered_packages:
             print(package.get_all_info())

@@ -3,6 +3,8 @@
 from truck import Truck
 from packagedata import create_packages
 from hashtable import HashTable
+from gui import GUI
+import tkinter as tk
 
 # Create packages, add to hashtable
 packages = create_packages()
@@ -40,6 +42,7 @@ for package in truck3_special:
 # Add remaining packages to trucks, starting with truck 1 with package ID 1
 for i in range(1, hashtable.size + 1):
     package = hashtable.hash_lookup(i)
+    # Search through all special packages to see if the package is already on a truck
     if package not in truck1_special + truck2_special + truck3_special:
         if not truck1.full:
             truck1.load_package(package)
@@ -48,25 +51,13 @@ for i in range(1, hashtable.size + 1):
         elif not truck3.full:
             truck3.load_package(package)
 
-'''
-for package in truck1.packages:
-    print(package.get_all_info())
-print("\n")
-for package in truck2.packages:
-    print(package.get_all_info())
-print("\n")
-for package in truck3.packages:
-    print(package.get_all_info())
-'''
+# Run nearest neighbor algorithm for each truck
+truck1.nearest_neighbor()  # Truck 1 driver finishes before 10:20 AM
+truck2.nearest_neighbor()
+truck3.nearest_neighbor()  # Truck 3 starts at 10:20 AM for the latest available packages
 
-# Test nearest neighbor algorithm
-truck1.test_nearest_neighbor()
-print("Truck 1 test done \n\n")
-truck2.test_nearest_neighbor()
-print("Truck 2 test done\n\n")
-truck3.test_nearest_neighbor()
-print("Truck 3 test done\n\n")
+root = tk.Tk()
+root.geometry("1200x800")
+gui = GUI(root, hashtable, truck1, truck2, truck3)
+root.mainloop()
 
-# Print overall total distance
-print(f"Total miles driven: {truck1.total_miles + truck2.total_miles + truck3.total_miles}.")
-print(hashtable.get_all_status('8:25 AM'))
