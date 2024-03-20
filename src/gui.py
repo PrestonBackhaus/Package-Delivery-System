@@ -86,8 +86,8 @@ class GUI(tk.Frame):
     def display_all_status_mileage(self):
         # Clear
         self.all_results_text.delete(1.0, tk.END)
-        # Get statuses
-        truck1_statuses, truck2_statuses, truck3_statuses = self.hashtable.get_all_status('3:00 PM')
+        # Get statuses (late_statuses is unused because delivery has finished)
+        truck1_statuses, truck2_statuses, truck3_statuses, late_statuses = self.hashtable.get_all_status('3:00 PM')
         # Convert status list to a string for display on label
         truck1_statuses_string = '\n'.join(truck1_statuses)
         truck2_statuses_string = '\n'.join(truck2_statuses)
@@ -120,13 +120,15 @@ class GUI(tk.Frame):
         # Clear
         self.all_results_text.delete(1.0, tk.END)
         # Get statuses
-        truck1_statuses, truck2_statuses, truck3_statuses = self.hashtable.get_all_status(time)
+        truck1_statuses, truck2_statuses, truck3_statuses, late_statuses = self.hashtable.get_all_status(time)
         # Convert status list to a string for display on label
         truck1_statuses_string = '\n'.join(truck1_statuses)
         truck2_statuses_string = '\n'.join(truck2_statuses)
         truck3_statuses_string = '\n'.join(truck3_statuses)
+        late_statuses_string = '\n'.join(late_statuses)
         # Display statuses
         self.all_results_text.insert(tk.END, f"Truck 1 statuses:\n{truck1_statuses_string}\n"
                                              f"Truck 2 statuses:\n{truck2_statuses_string}\n"
-                                             f"Truck 3 statuses:\n{truck3_statuses_string}\n")
+                                             f"Truck 3 statuses:\n{truck3_statuses_string}\n"
+                                             f"Packages unable to be loaded at this time:\n{late_statuses_string}")
 

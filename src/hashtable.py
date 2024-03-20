@@ -23,12 +23,15 @@ class HashTable:
                     return package
         return None
     
-    # Get all package statuses at a given time
+    # Get all package statuses at a given time. Compares each package's delivery and load times with the given time
     def get_all_status(self, time):
         # List to store statuses
         truck1_statuses = []
         truck2_statuses = []
         truck3_statuses = []
+        # List for packages that arrive late to depot
+        late_packages = [6, 9, 25, 28, 32]
+        late_statuses = []
         check_time = datetime.strptime(time, '%I:%M %p')  # Convert time to datetime
         # Iterate over all packages in hash table
         for i in range(1, 41):
@@ -36,8 +39,17 @@ class HashTable:
             # Convert load and delivery time to datetime
             load_time = datetime.strptime(package.get_load_time(), '%I:%M %p')
             delivery_time = datetime.strptime(package.get_delivery_time(), '%I:%M %p')
+            # Convert times for packages that arrive late
+            late_time = datetime.strptime('9:05 AM', '%I:%M %p')
+            special_late_time = datetime.strptime('10:20 AM', '%I:%M %p')
+            # Make sure packages that arrive late are accounted for or not
+            if i in late_packages and late_time > check_time:
+                if i == 9 and special_late_time > check_time:
+                    late_statuses.append(f'Package {package.get_id()} still has an incorrect address.')
+                else:
+                    late_statuses.append(f'Package {package.get_id()} has not arrived at the hub yet.')
             # Check if load time is after check time
-            if load_time > check_time:
+            elif load_time > check_time:
                 if package.truck == 1:
                     truck1_statuses.append(f'Package {package.get_id()} is still at the hub.')
                 elif package.truck == 2:
@@ -61,7 +73,7 @@ class HashTable:
                     truck2_statuses.append(f'Package {package.get_id()} is en route.')
                 elif package.truck == 3:
                     truck3_statuses.append(f'Package {package.get_id()} is en route.')
-        return truck1_statuses, truck2_statuses, truck3_statuses
+        return truck1_statuses, truck2_statuses, truck3_statuses, late_statuses
 
     # Get single package status at a given time
     def get_single_status(self, id, time):
