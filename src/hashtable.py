@@ -13,9 +13,17 @@ class HashTable:
         if self.table[index] is None:  # If the index is empty, create a list
             self.table[index] = []
         self.table[index].append(package)  # Add to bucket
+
+    # Look-up function to return all data components
+    def hash_lookup(self, key):
+        index = int(key) % self.size
+        if self.table[index] is not None:
+            for package in self.table[index]:  # Returns all requested package data
+                return package.address, package.zip, package.city, package.deadline, package.weight, package.status
+        return None
         
     # Search for package by id (key)
-    def hash_lookup(self, key):
+    def hash_search(self, key):
         index = int(key) % self.size
         if self.table[index] is not None:
             for package in self.table[index]:  # Finds package in bucket
@@ -35,7 +43,7 @@ class HashTable:
         check_time = datetime.strptime(time, '%I:%M %p')  # Convert time to datetime
         # Iterate over all packages in hash table
         for i in range(1, 41):
-            package = self.hash_lookup(i)
+            package = self.hash_search(i)
             # Convert load and delivery time to datetime
             load_time = datetime.strptime(package.get_load_time(), '%I:%M %p')
             delivery_time = datetime.strptime(package.get_delivery_time(), '%I:%M %p')
@@ -77,7 +85,7 @@ class HashTable:
 
     # Get single package status at a given time
     def get_single_status(self, id, time):
-        package = self.hash_lookup(id)
+        package = self.hash_search(id)
         check_time = datetime.strptime(time, '%I:%M %p')  # Convert time to datetime
         # Convert load and delivery time to datetime
         load_time = datetime.strptime(package.get_load_time(), '%I:%M %p')

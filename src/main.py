@@ -14,16 +14,16 @@ for package in packages:
 
 # Packages with special instructions
 # Truck 1 has packages that must be together
-truck1_special = [hashtable.hash_lookup(13), hashtable.hash_lookup(14),
-                    hashtable.hash_lookup(15), hashtable.hash_lookup(16),
-                    hashtable.hash_lookup(19), hashtable.hash_lookup(20)]
+truck1_special = [hashtable.hash_search(13), hashtable.hash_search(14),
+                  hashtable.hash_search(15), hashtable.hash_search(16),
+                  hashtable.hash_search(19), hashtable.hash_search(20)]
 # Truck 2 has packages that must be on truck 2
-truck2_special = [hashtable.hash_lookup(3), hashtable.hash_lookup(18),
-                  hashtable.hash_lookup(36), hashtable.hash_lookup(38)]
+truck2_special = [hashtable.hash_search(3), hashtable.hash_search(18),
+                  hashtable.hash_search(36), hashtable.hash_search(38)]
 # Truck 3 has delayed packages, with the latest package loaded at 10:20 AM
-truck3_special = [hashtable.hash_lookup(6), hashtable.hash_lookup(9),
-                  hashtable.hash_lookup(25), hashtable.hash_lookup(28),
-                  hashtable.hash_lookup(32)]
+truck3_special = [hashtable.hash_search(6), hashtable.hash_search(9),
+                  hashtable.hash_search(25), hashtable.hash_search(28),
+                  hashtable.hash_search(32)]
 
 # Create Truck objects
 truck1 = Truck(1)
@@ -41,7 +41,7 @@ for package in truck3_special:
 
 # Add remaining packages to trucks, starting with truck 1 with package ID 1
 for i in range(1, hashtable.size + 1):
-    package = hashtable.hash_lookup(i)
+    package = hashtable.hash_search(i)
     # Search through all special packages to see if the package is already on a truck
     if package not in truck1_special + truck2_special + truck3_special:
         if not truck1.full:
