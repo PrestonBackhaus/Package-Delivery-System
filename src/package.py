@@ -13,9 +13,30 @@ class Package:
         self.load_time = None
         self.truck = None
 
+    # Returns address
     def get_address(self):
         return self.address
-    
+
+    # Set package address
+    def set_address(self, address):
+        self.address = address
+
+    # Get city
+    def get_city(self):
+        return self.city
+
+    # Set city
+    def set_city(self, city):
+        self.city = city
+
+    # Get state
+    def get_state(self):
+        return self.state
+
+    # Set state
+    def set_state(self, state):
+        self.state = state
+
     # Returns all package info
     def get_all_info(self):
         return (f'ID: {self.id}, Address: {self.address}, City: {self.city}, State: {self.state}, '

@@ -2,6 +2,8 @@ Special Instructions:
 ID 3: Can only be on truck 2
 ID 6: Delayed on flight -- will not arrive to depot until 9:05 am
 ID 9: Wrong address until 10:20 am, so can not be loaded until then
+Address for package 9 changes from 300 State St, Salt Lake City, UT, 84119
+to 410 S. State St., Salt Lake City, UT
 ID 14: Must be delivered with 15, 19
 ID 16: Must be delivered with 13, 19
 ID 18: Can only be on truck 2

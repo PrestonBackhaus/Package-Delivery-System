@@ -36,6 +36,9 @@ for package in truck1_special:
     truck1.load_package(package)
 for package in truck2_special:
     truck2.load_package(package)
+if truck3.current_time == '10:20 AM':  # Change pacakge 9's address when truck3's time reaches 10:20 AM
+    package9 = hashtable.hash_search(9)
+    package9.set_address('410 S State St')
 for package in truck3_special:
     truck3.load_package(package)
 
