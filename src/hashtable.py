@@ -53,34 +53,34 @@ class HashTable:
             # Make sure packages that arrive late are accounted for or not
             if i in late_packages and late_time > check_time:
                 if i == 9 and special_late_time > check_time:
-                    late_statuses.append(f'Package {package.get_id()} still has an incorrect address.')
+                    late_statuses.append(f'Package {package.get_id()} still has an incorrect address. Deadline: {package.get_deadline()}.')
                 else:
-                    late_statuses.append(f'Package {package.get_id()} has not arrived at the hub yet.')
+                    late_statuses.append(f'Package {package.get_id()} has not arrived at the hub yet. Deadline: {package.get_deadline()}.')
             # Check if load time is after check time
             elif load_time > check_time:
                 if package.truck == 1:
-                    truck1_statuses.append(f'Package {package.get_id()} is still at the hub.')
+                    truck1_statuses.append(f'Package {package.get_id()} is still at the hub. Deadline: {package.get_deadline()}.')
                 elif package.truck == 2:
-                    truck2_statuses.append(f'Package {package.get_id()} is still at the hub.')
+                    truck2_statuses.append(f'Package {package.get_id()} is still at the hub. Deadline: {package.get_deadline()}.')
                 elif package.truck == 3:
-                    truck3_statuses.append(f'Package {package.get_id()} is still at the hub.')
+                    truck3_statuses.append(f'Package {package.get_id()} is still at the hub. Deadline: {package.get_deadline()}.')
             # Check if delivery time is before check time
             elif delivery_time <= check_time:
-                print(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}.')
+                print(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}. Deadline: {package.get_deadline()}.')
                 if package.truck == 1:
-                    truck1_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}.')
+                    truck1_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}. Deadline: {package.get_deadline()}.')
                 elif package.truck == 2:
-                    truck2_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}.')
+                    truck2_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}. Deadline: {package.get_deadline()}.')
                 elif package.truck == 3:
-                    truck3_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}.')
+                    truck3_statuses.append(f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}. Deadline: {package.get_deadline()}.')
             # If neither, package is on a truck/en route
             else:
                 if package.truck == 1:
-                    truck1_statuses.append(f'Package {package.get_id()} is en route.')
+                    truck1_statuses.append(f'Package {package.get_id()} is en route. Deadline: {package.get_deadline()}.')
                 elif package.truck == 2:
-                    truck2_statuses.append(f'Package {package.get_id()} is en route.')
+                    truck2_statuses.append(f'Package {package.get_id()} is en route. Deadline: {package.get_deadline()}.')
                 elif package.truck == 3:
-                    truck3_statuses.append(f'Package {package.get_id()} is en route.')
+                    truck3_statuses.append(f'Package {package.get_id()} is en route. Deadline: {package.get_deadline()}.')
         return truck1_statuses, truck2_statuses, truck3_statuses, late_statuses
 
     # Get single package status at a given time
@@ -93,12 +93,12 @@ class HashTable:
         # Check if load time is after check time
         if load_time > check_time:
             return (f'Package {package.get_id()} was assigned to truck {package.truck}.\n'
-                    f'Package is still at the hub.')
+                    f'Package is still at the hub. Deadline: {package.get_deadline()}.')
         # Check if delivery time is before check time
         elif delivery_time <= check_time:
             return (f'Package {package.get_id()} was assigned to truck {package.truck}.\n'
-                    f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}.')
+                    f'Package {package.get_id()} was delivered at {package.get_delivery_time()} to address {package.get_address()}. Deadline: {package.get_deadline()}.')
         # If neither, package is on a truck/en route
         else:
             return (f'Package {package.get_id()} was assigned to truck {package.truck}.\n'
-                    f'Package is en route.')
+                    f'Package is en route. Deadline: {package.get_deadline()}.')

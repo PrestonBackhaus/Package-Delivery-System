@@ -12,6 +12,8 @@ class Package:
         self.delivery_time = None
         self.load_time = None
         self.truck = None
+        self.priority = False
+        self.special = ''
 
     # Returns address
     def get_address(self):
@@ -93,3 +95,7 @@ class Package:
     # Get the truck the package is on
     def get_truck(self):
         return self.truck
+
+    # Get special instructions (only set for 9:05 AM arrival)
+    def get_special(self):
+        return self.special

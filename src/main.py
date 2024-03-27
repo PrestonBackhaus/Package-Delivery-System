@@ -11,24 +11,32 @@ packages = create_packages()
 hashtable = HashTable(40)
 for package in packages:
     hashtable.hash_insert(package)
+    if package.get_id() in ['6', '25', '28', '32']:
+        package.special = '9:05 AM'
 
-# Packages with special instructions
+# Packages with special instructions or failing time constraints
 # Truck 1 has packages that must be together
 truck1_special = [hashtable.hash_search(13), hashtable.hash_search(14),
                   hashtable.hash_search(15), hashtable.hash_search(16),
-                  hashtable.hash_search(19), hashtable.hash_search(20)]
+                  hashtable.hash_search(19), hashtable.hash_search(20),
+                  hashtable.hash_search(29), hashtable.hash_search(34),
+                  hashtable.hash_search(30), hashtable.hash_search(37),
+                  hashtable.hash_search(31), hashtable.hash_search(17),
+                  hashtable.hash_search(10), hashtable.hash_search(40)]
 # Truck 2 has packages that must be on truck 2
-truck2_special = [hashtable.hash_search(3), hashtable.hash_search(18),
+truck2_special = [hashtable.hash_search(3), hashtable.hash_search(6),
+                  hashtable.hash_search(18), hashtable.hash_search(25),
                   hashtable.hash_search(36), hashtable.hash_search(38)]
 # Truck 3 has delayed packages, with the latest package loaded at 10:20 AM
-truck3_special = [hashtable.hash_search(6), hashtable.hash_search(9),
-                  hashtable.hash_search(25), hashtable.hash_search(28),
+truck3_special = [hashtable.hash_search(9),
+                  hashtable.hash_search(28),
                   hashtable.hash_search(32)]
 
 # Create Truck objects
 truck1 = Truck(1)
 truck2 = Truck(2)
 truck3 = Truck(3)
+truck2.current_time = '9:05 AM'  # Truck 2 will carry package 6
 truck3.current_time = '10:20 AM'  # Truck 3 does not leave until 10:20 AM, when package 9 is loaded
 
 # Add all special packages to trucks

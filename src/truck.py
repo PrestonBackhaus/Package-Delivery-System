@@ -22,6 +22,8 @@ class Truck:
     def load_package(self, package):
         if not self.full:  # Add as long as the truck is not full
             self.packages.append(package)
+            if package.get_special() == '9:05 AM':
+                package.priority = True
             package.truck = self.id  # Set package truck to current truck
             package.set_en_route()  # Set package status to en route
             package.set_load_time(self.current_time)  # Set package load time to current time
@@ -53,6 +55,10 @@ class Truck:
             shortest = 1000  # Set shortest distance to a number higher than any distance could be
             for package in self.packages:  # Iterate through every package
                 distance = self.distance_between(temp_package, package)  # Get the distance between packages
+                if package.priority:
+                    shortest = distance
+                    next_package = package
+                    break
                 if distance < shortest:  # Set the shortest distance and next package
                     shortest = distance
                     next_package = package
