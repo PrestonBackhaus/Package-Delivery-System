@@ -11,6 +11,8 @@ def create_packages():
         for row in reader:
             # Create package and add to list of packages
             package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], "At the hub")
+            if row[7] != '':
+                package.set_note(row[7])
             packages.append(package)
 
     return packages

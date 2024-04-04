@@ -79,7 +79,7 @@ class GUI(tk.Frame):
         self.all_time_label.place(relx=0.02, rely=0.78, anchor='nw')
 
         # Text box for all status and mileage
-        self.all_results_text = tk.Text(self, width=100, height=48)
+        self.all_results_text = tk.Text(self, width=100, height=48, wrap=tk.WORD)
         self.all_results_text.place(relx=0.3, rely=0.1, anchor='nw')
 
     # Display all statuses and mileage, attached to first button
@@ -99,13 +99,13 @@ class GUI(tk.Frame):
         truck3_miles = self.truck3.total_miles
         total_miles = truck1_miles + truck2_miles + truck3_miles  # Total mileage of the whole delivery system
         # Display package statuses and mileage for each truck
-        self.all_results_text.insert(tk.END, f"Truck 1 statuses:\n{truck1_statuses_string}\n"
-                                             f"Truck 2 statuses:\n{truck2_statuses_string}\n"
-                                             f"Truck 3 statuses:\n{truck3_statuses_string}\n"
-                                             f"Truck 1 miles: {truck1_miles}\n"
+        self.all_results_text.insert(tk.END, f"Truck 1 miles: {truck1_miles}\n"
                                              f"Truck 2 miles: {truck2_miles}\n"
                                              f"Truck 3 miles: {truck3_miles}\n"
-                                             f"Total miles driven: {total_miles}.")
+                                             f"Total miles driven: {total_miles}\n"
+                                             f"Truck 1 statuses:\n{truck1_statuses_string}\n\n"
+                                             f"Truck 2 statuses:\n{truck2_statuses_string}\n\n"
+                                             f"Truck 3 statuses:\n{truck3_statuses_string}")
 
     # Display single status at given time, attached to second button
     def display_single_status(self, id, time):
@@ -128,8 +128,8 @@ class GUI(tk.Frame):
         truck3_statuses_string = '\n'.join(truck3_statuses)
         late_statuses_string = '\n'.join(late_statuses)
         # Display statuses
-        self.all_results_text.insert(tk.END, f"Truck 1 statuses:\n{truck1_statuses_string}\n"
-                                             f"Truck 2 statuses:\n{truck2_statuses_string}\n"
-                                             f"Truck 3 statuses:\n{truck3_statuses_string}\n"
+        self.all_results_text.insert(tk.END, f"Truck 1 statuses:\n{truck1_statuses_string}\n\n"
+                                             f"Truck 2 statuses:\n{truck2_statuses_string}\n\n"
+                                             f"Truck 3 statuses:\n{truck3_statuses_string}\n\n"
                                              f"Packages unable to be loaded at this time:\n{late_statuses_string}")
 

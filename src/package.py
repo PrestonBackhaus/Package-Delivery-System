@@ -9,11 +9,12 @@ class Package:
         self.deadline = deadline
         self.weight = weight
         self.status = status
-        self.delivery_time = None
+        self.delivery_time = 'Not delivered'
         self.load_time = None
         self.truck = None
         self.priority = False
         self.special = ''
+        self.note = 'None'
 
     # Returns address
     def get_address(self):
@@ -39,6 +40,14 @@ class Package:
     def set_state(self, state):
         self.state = state
 
+    # Set zip
+    def set_zip(self, zip):
+        self.zip = zip
+
+    # Get zip
+    def get_zip(self):
+        return self.zip
+
     # Returns all package info
     def get_all_info(self):
         return (f'ID: {self.id}, Address: {self.address}, City: {self.city}, State: {self.state}, '
@@ -60,13 +69,13 @@ class Package:
     # Get delivery status and time delivered
     def get_status(self):
         if self.status == 'Delivered':
-            return f'Delivered at {self.delivery_time}.'
+            return f'Delivered'
         elif self.status == 'At the hub':
-            return f'Package is at the hub.'
+            return f'Package is at the hub'
         elif self.status == 'En route':
-            return f'Package is en route.'
+            return f'Package is en route'
         else:
-            return f'Package is not delivered.'
+            return f'Package is not delivered'
 
     # Get deadline
     def get_deadline(self):
@@ -79,6 +88,7 @@ class Package:
     # Set delivery time
     def set_delivery_time(self, time):
         self.delivery_time = time
+        self.status = 'Delivered'
 
     # Get delivery time
     def get_delivery_time(self):
@@ -99,3 +109,19 @@ class Package:
     # Get special instructions (only set for 9:05 AM arrival)
     def get_special(self):
         return self.special
+
+    # Set note
+    def set_note(self, note):
+        self.note = note
+
+    # Get note
+    def get_note(self):
+        return self.note
+
+    # Set weight
+    def set_weight(self, weight):
+        self.weight = weight
+
+    # Get weight
+    def get_weight(self):
+        return self.weight
